@@ -1,0 +1,153 @@
+Description: Fix spelling errors
+Author: Otto Kekäläinen <otto@seravo.fi>
+Last-Update: 2014-10-02
+
+--- a/storage/connect/tabxml.cpp
++++ b/storage/connect/tabxml.cpp
+@@ -1800,7 +1800,7 @@ void XMULCOL::ReadColumn(PGLOBAL g)
+ 
+       if (N > Tdbp->Limit) {
+         N = Tdbp->Limit;
+-        sprintf(g->Message, "Mutiple values limited to %d", Tdbp->Limit);
++        sprintf(g->Message, "Multiple values limited to %d", Tdbp->Limit);
+         PushWarning(g, Tdbp);
+         } // endif N
+ 
+--- a/storage/connect/mysql-test/connect/r/xml_mult.result
++++ b/storage/connect/mysql-test/connect/r/xml_mult.result
+@@ -51,14 +51,14 @@ WEB	XQuery Kick Start	en	Per Bothner	200
+ WEB	XQuery Kick Start	en	Kurt Cagle	2003	49.99
+ WEB	Learning XML	en	Erik T. Ray	2003	39.95
+ Warnings:
+-Warning	1105	Mutiple values limited to 3
++Warning	1105	Multiple values limited to 3
+ # One line lost because the where clause is applied only on the first 3 rows
+ SELECT category, title, author, price FROM bookstore WHERE author LIKE 'J%';
+ category	title	author	price
+ CHILDREN	Harry Potter	J K. Rowling	29.99
+ WEB	XQuery Kick Start	James McGovern	49.99
+ Warnings:
+-Warning	1105	Mutiple values limited to 3
++Warning	1105	Multiple values limited to 3
+ #
+ # Testing concatenated values
+ #
+@@ -91,12 +91,12 @@ CHILDREN	Harry Potter	en	J K. Rowling	20
+ WEB	XQuery Kick Start	en	James McGovern, Per Bothner, Kurt Cagle, James Linn	2003	49.99
+ WEB	Learning XML	en	Erik T. Ray	2003	39.95
+ Warnings:
+-Warning	1105	Mutiple values limited to 4
++Warning	1105	Multiple values limited to 4
+ # The where clause is applied on the concatenated column result
+ SELECT category, title, author, price FROM bookstore WHERE author LIKE 'J%';
+ category	title	author	price
+ CHILDREN	Harry Potter	J K. Rowling	29.99
+ WEB	XQuery Kick Start	James McGovern, Per Bothner, Kurt Cagle, James Linn	49.99
+ Warnings:
+-Warning	1105	Mutiple values limited to 4
++Warning	1105	Multiple values limited to 4
+ DROP TABLE bookstore;
+--- a/extra/yassl/src/ssl.cpp
++++ b/extra/yassl/src/ssl.cpp
+@@ -1007,7 +1007,7 @@ void OpenSSL_add_all_algorithms()  // co
+ {}
+ 
+ 
+-int SSL_library_init()  // compatiblity only
++int SSL_library_init()  // compatibility only
+ {
+     return 1;
+ }
+--- a/mysql-test/r/mysqld--help.result
++++ b/mysql-test/r/mysqld--help.result
+@@ -870,7 +870,7 @@ The following options may be given as th
+  --show-slave-auth-info 
+  Show user and password in SHOW SLAVE HOSTS on this
+  master.
+- --skip-bdb          Deprecated option; Exist only for compatiblity with old
++ --skip-bdb          Deprecated option; Exist only for compatibility with old
+  my.cnf files
+  --skip-grant-tables Start without grant tables. This gives all users FULL
+  ACCESS to all tables.
+--- a/mysql-test/suite/plugins/r/locales.result
++++ b/mysql-test/suite/plugins/r/locales.result
+@@ -40,8 +40,8 @@ ID	NAME	DESCRIPTION	MAX_MONTH_NAME_LENGT
+ 37	nb_NO	Norwegian(Bokml) - Norway	9	7	,	.	norwegian
+ 38	nl_NL	Dutch - The Netherlands	9	9	,		dutch
+ 39	pl_PL	Polish - Poland	11	12	,		polish
+-40	pt_BR	Portugese - Brazil	9	7	,		portuguese
+-41	pt_PT	Portugese - Portugal	9	7	,		portuguese
++40	pt_BR	Portuguese - Brazil	9	7	,		portuguese
++41	pt_PT	Portuguese - Portugal	9	7	,		portuguese
+ 42	ro_RO	Romanian - Romania	10	8	,	.	romanian
+ 43	ru_RU	Russian - Russia	8	11	,	 	russian
+ 44	ru_UA	Russian - Ukraine	8	11	,	.	russian
+--- a/sql/mysqld.cc
++++ b/sql/mysqld.cc
+@@ -7077,7 +7077,7 @@ struct my_option my_long_options[]=
+    &opt_show_slave_auth_info, &opt_show_slave_auth_info, 0,
+    GET_BOOL, NO_ARG, 0, 0, 0, 0, 0, 0},
+   {"skip-bdb", OPT_DEPRECATED_OPTION,
+-   "Deprecated option; Exist only for compatiblity with old my.cnf files",
++   "Deprecated option; Exist only for compatibility with old my.cnf files",
+    0, 0, 0, GET_NO_ARG, NO_ARG, 0, 0, 0, 0, 0, 0},
+ #ifndef DISABLE_GRANT_OPTIONS
+   {"skip-grant-tables", 0,
+@@ -8412,7 +8412,7 @@ mysqld_get_one_option(int optid,
+     break;
+   case OPT_DEPRECATED_OPTION:
+     sql_print_warning("'%s' is deprecated. It does nothing and exists only "
+-                      "for compatiblity with old my.cnf files.",
++                      "for compatibility with old my.cnf files.",
+                       opt->name);
+     break;
+   case OPT_MYSQL_COMPATIBILITY:
+--- a/sql/sql_locale.cc
++++ b/sql/sql_locale.cc
+@@ -1433,7 +1433,7 @@ MY_LOCALE my_locale_pl_PL
+ );
+ /***** LOCALE END pl_PL *****/
+ 
+-/***** LOCALE BEGIN pt_BR: Portugese - Brazil *****/
++/***** LOCALE BEGIN pt_BR: Portuguese - Brazil *****/
+ static const char *my_locale_month_names_pt_BR[13] = 
+  {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro", NullS };
+ static const char *my_locale_ab_month_names_pt_BR[13] = 
+@@ -1454,7 +1454,7 @@ MY_LOCALE my_locale_pt_BR
+ (
+   40,
+   "pt_BR",
+-  "Portugese - Brazil",
++  "Portuguese - Brazil",
+   FALSE,
+   &my_locale_typelib_month_names_pt_BR,
+   &my_locale_typelib_ab_month_names_pt_BR,
+@@ -1469,7 +1469,7 @@ MY_LOCALE my_locale_pt_BR
+ );
+ /***** LOCALE END pt_BR *****/
+ 
+-/***** LOCALE BEGIN pt_PT: Portugese - Portugal *****/
++/***** LOCALE BEGIN pt_PT: Portuguese - Portugal *****/
+ static const char *my_locale_month_names_pt_PT[13] = 
+  {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro", NullS };
+ static const char *my_locale_ab_month_names_pt_PT[13] = 
+@@ -1490,7 +1490,7 @@ MY_LOCALE my_locale_pt_PT
+ (
+   41,
+   "pt_PT",
+-  "Portugese - Portugal",
++  "Portuguese - Portugal",
+   FALSE,
+   &my_locale_typelib_month_names_pt_PT,
+   &my_locale_typelib_ab_month_names_pt_PT,
+--- a/storage/spider/spd_param.cc
++++ b/storage/spider/spd_param.cc
+@@ -1882,7 +1882,7 @@ int spider_param_auto_increment_mode(
+ static MYSQL_THDVAR_BOOL(
+   same_server_link, /* name */
+   PLUGIN_VAR_OPCMDARG, /* opt */
+-  "Permit to link same server's table", /* comment */
++  "Permit one to link same server's table", /* comment */
+   NULL, /* check */
+   NULL, /* update */
+   FALSE /* def */

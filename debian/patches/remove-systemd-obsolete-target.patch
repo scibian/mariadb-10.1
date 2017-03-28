@@ -1,0 +1,26 @@
+Description: Remove obsoleted systemd target
+ In Debian 9 the syslog.target is socket activated and thus obsolete to define.
+ For details see Lintian warning
+ https://lintian.debian.org/tags/systemd-service-file-refers-to-obsolete-target.html
+Author: Otto Kekäläinen <otto@mariadb.org>
+
+--- a/support-files/mariadb.service.in
++++ b/support-files/mariadb.service.in
+@@ -15,7 +15,6 @@
+ [Unit]
+ Description=MariaDB database server
+ After=network.target
+-After=syslog.target
+ 
+ [Install]
+ WantedBy=multi-user.target
+--- a/support-files/mariadb@.service.in
++++ b/support-files/mariadb@.service.in
+@@ -20,7 +20,6 @@
+ [Unit]
+ Description=MariaDB database server
+ After=network.target
+-After=syslog.target
+ 
+ ConditionPathExists=@sysconf2dir@/my%I.cnf
+ 

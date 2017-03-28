@@ -1,13 +1,47 @@
 * MYSQL WON'T START OR STOP?:
 =============================
+First check the contents of syslog (or systemd journal) and then check the
+logs at /var/log/mysql/ for any hints of what might be wrong.
+
+* NATIVE SYSTEMD SERVICE INTRODUCED IN MARIADB 10.1
+===================================================
+
+From MariaDB 10.1 onwards the upstream mariadb.service and mariadb@.service are
+used to provide the full systemd experience. Some features available in
+traditional /etc/init.d/mysql have been changed. For details see
+https://mariadb.com/kb/en/mariadb/systemd/
+
+* MIXING PACKAGES FROM MARIAD.ORG AND OFFICIAL DEBIAN REPOSITORIES
+==================================================================
+
+Please note that the MariaDB packaging in official Debian repositories are of
+a completely new generation compared to the legacy packaging used in MariaDB.org
+repositories. You cannot mix and match MariaDB 10.1 packages from official
+Debian (or Ubuntu) repositories with packages from MariaDB.org repositories.
+Packages from the MariaDB.org repositories include the revision string '+maria'.
+
+If a MariaDB.org repository is enabled, learn to use apt pinning properly.
+
+Please do not file bugs in Debian regarding packages with '+maria' in the
+revision string.
+
+* ROOT USER AUTHENTICATION VIA UNIX SOCKET
+==========================================
+
+On new installs no root password is set and no debian-sys-maint user is
+created anymore. Instead the MariaDB root account is set to be authenticated
+using the unix socket, e.g. any mysqld invocation by root or via sudo will
+let the user see the mysqld prompt.
+
 You may never ever delete the mysql user "root". Although it has no password
 is set, the unix_auth plugin ensure that it can only be run locally as the root
-user. The credentials in /etc/mysql/debian.cnf specify the user are used by the
-init scripts to stop the server and perform logrotation. So in most of the
-time you can fix the situation by making sure that the /etc/mysql/debian.cnf
-file specifies the root user and no password.
+user.
 
-This used to be the debian-sys-maint user which is no longer used.
+The credentials in /etc/mysql/debian.cnf specify the user which is used by the
+init scripts to stop the server and perform logrotation. This used to be the
+debian-sys-maint user which is no longer used as root can run directly.
+
+If you have start/stop problems make sure that the /etc/mysql/debian.cnf file specifies the root user and no password.
 
 * WHAT TO DO AFTER UPGRADES:
 ============================
@@ -22,7 +56,6 @@ chapter.  They are not necessary as the Debian packages does them
 automatically.
 
 The only thing that is left over for the admin is
- - setting the passwords
  - creating new users and databases
  - read the rest of this text
 
@@ -39,10 +72,10 @@ https://mariadb.com/kb
 
 * PASSWORDS:
 ============
-It is strongly recommended you create an admin users for your database
-adminstration needs.
+It is recommended you create additional admin users for your database
+adminstration needs in addition to the default root user.
 
-If your your local unix account is the one you want to have local super user
+If your local unix account is the one you want to have local super user
 access on your database with you can create the following account that will
 only work for the local unix user connecting to the database locally.
 
@@ -57,14 +90,14 @@ the DB server over the network:
 
   sudo /usr/bin/mysql -e "GRANT ALL ON *.* TO 'USERNAME'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION"
 
-Scripts should run as a user have have the required grants and be identified via unix_socket.
+Scripts should run as a user who have the required grants and be identified via unix_socket.
 
 If you are too tired to type the password in every time and unix_socket auth
 doesn't suit your needs, you can store it in the file $HOME/.my.cnf. It should
-be chmod 0600 (-rw------- username username .my.cnf) to ensure that nobody else
+be chmod 0600 (-rw------- username usergroup .my.cnf) to ensure that nobody else
 can read it.  Every other configuration parameter can be stored there, too.
 
-For more information in the MariaDB manual in/usr/share/doc/mariadb-doc or 
+For more information in the MariaDB manual in/usr/share/doc/mariadb-doc or
 https://mariadb.com/kb/en/configuring-mariadb-with-mycnf/.
 
 ATTENTION: It is necessary, that a ~/.my.cnf from root always contains a "user"

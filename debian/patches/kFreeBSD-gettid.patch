@@ -1,0 +1,13 @@
+--- mariadb-10.1.orig/storage/tokudb/PerconaFT/portability/portability.cc
++++ mariadb-10.1/storage/tokudb/PerconaFT/portability/portability.cc
+@@ -115,6 +115,10 @@ toku_os_gettid(void) {
+     return syscall(SYS_gettid);
+ #elif defined(HAVE_PTHREAD_GETTHREADID_NP)
+     return pthread_getthreadid_np();
++#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
++    long lwpid;
++    thr_self( &lwpid );
++    return lwpid;
+ #else
+ # error "no implementation of gettid available"
+ #endif

@@ -1,0 +1,12 @@
+Description: Makes mysqld_multi reading conf.d (Closes: #778761)
+Author: Jan Wagner <waja@cyconet.org>
+--- a/scripts/mysqld_multi.sh
++++ b/scripts/mysqld_multi.sh
+@@ -513,6 +513,7 @@ sub list_defaults_files
+                '@prefix@/my.cnf',
+                ($ENV{MYSQL_HOME} ? "$ENV{MYSQL_HOME}/my.cnf" : undef),
+                $opt{'extra-file'},
++               </etc/mysql/conf.d/*.cnf>,
+                ($ENV{HOME} ? "$ENV{HOME}/.my.cnf" : undef));
+ }
+ 
