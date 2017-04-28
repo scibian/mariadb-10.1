@@ -17,10 +17,8 @@ case "$1" in
       # if it is there already
       if [ ! -L /etc/mysql/my.cnf ]
       then
-        echo "Notice: configure-symlinks trigger could not be called."
-        echo "Please manually create symlinks by running: "
-        echo "  mv -f /etc/mysql/my.cnf /etc/mysql/my.cnf.old"
-        echo "  ln -sf mariadb.cnf /etc/mysql/my.cnf"
+        mv -f /etc/mysql/my.cnf /etc/mysql/my.cnf.old
+        ln -sf mariadb.cnf /etc/mysql/my.cnf
       fi
     fi
   ;;

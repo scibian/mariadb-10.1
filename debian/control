@@ -37,7 +37,7 @@ Vcs-Browser: https://anonscm.debian.org/git/pkg-mysql/mariadb-10.1.git
 Package: libmariadbclient18
 Section: libs
 Architecture: any
-Depends: mysql-common, ${misc:Depends}, ${shlibs:Depends}
+Depends: mariadb-common, ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: MariaDB database client library
@@ -122,7 +122,7 @@ Description: MariaDB embedded database, development files
 
 Package: mariadb-common
 Architecture: all
-Depends: mysql-common (>= 5.6.25), ${misc:Depends}
+Depends: mysql-common, ${misc:Depends}
 Multi-Arch: foreign
 Description: MariaDB common metapackage
  MariaDB is a fast, stable and true multi-user, multi-threaded SQL database

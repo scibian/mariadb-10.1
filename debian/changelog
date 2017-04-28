@@ -1,3 +1,20 @@
+mariadb-10.1 (10.1.22-3~calibre9+2) calibre9; urgency=medium
+
+  * Remove gbp sign-tag opt
+  * Do not install mysql init script anymore
+  * Restore dep of mariadb-common on mysql-common
+
+ -- Rémi Palancher <remi-externe.palancher@edf.fr>  Fri, 28 Apr 2017 14:37:15 +0200
+
+mariadb-10.1 (10.1.22-3~calibre9+1) calibre9; urgency=medium
+
+  * Backport to Calibre9.
+    * Run commands instead of printing them in mariadb-common postinst
+      to avoid requirement of mysql-common symlink helper script
+    * Remove dependency on mysql-common, mariadb-common is enough
+
+ -- Rémi Palancher <remi-externe.palancher@edf.fr>  Thu, 27 Apr 2017 08:58:03 +0200
+
 mariadb-10.1 (10.1.22-3) unstable; urgency=medium
 
   * Use pidof instead of pgrep, so we don't have to depend on procps
