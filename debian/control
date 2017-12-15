@@ -1,7 +1,7 @@
 Source: mariadb-10.1
 Section: database
 Priority: optional
-Maintainer: Debian MySQL Maintainers <pkg-mysql-maint@lists.alioth.debian.org>
+Maintainer: Project <packaging@scibian.org>
 Uploaders: Otto Kekäläinen <otto@debian.org>, Arnaud Fontaine <arnau@debian.org>, Ondřej Surý <ondrej@debian.org>
 Build-Depends: bison,
                chrpath,
@@ -31,8 +31,8 @@ Build-Depends: bison,
                zlib1g-dev (>= 1:1.1.3-5~)
 Standards-Version: 3.9.8
 Homepage: https://mariadb.org/
-Vcs-Git: https://anonscm.debian.org/git/pkg-mysql/mariadb-10.1.git
-Vcs-Browser: https://anonscm.debian.org/git/pkg-mysql/mariadb-10.1.git
+Vcs-Git: https://github.com/scibian/mariadb-10.1.git
+Vcs-Browser: https://github.com/scibian//mariadb-10.1.git
 
 Package: libmariadbclient18
 Section: libs

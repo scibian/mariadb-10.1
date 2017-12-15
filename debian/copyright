@@ -168,6 +168,7 @@ Copyright:
  2016 Paul Gevers <elbrus@debian.org>
  2016 Samuel Thibault <sthibault@debian.org>
  2016 Vicențiu Ciorbaru <vicentiu@mariadb.org>
+ 2017 Scibian Project <legal@scibian.org>
 License: GPL-2+
 
 Files: plugin/feedback/*
