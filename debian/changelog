@@ -1,3 +1,9 @@
+mariadb-10.1 (10.1.22-3sci8u1) scibian8; urgency=medium
+
+  * Adapt control and copyright files for Scibian packaging
+
+ -- Pierre Trespeuch <pierre-externe.trespeuch@edf.fr>  Fri, 15 Dec 2017 17:20:41 +0100
+
 mariadb-10.1 (10.1.22-3~calibre9+2) calibre9; urgency=medium
 
   * Remove gbp sign-tag opt
