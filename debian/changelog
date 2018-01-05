@@ -1,3 +1,9 @@
+mariadb-10.1 (10.1.22-3sci8u2) scibian8; urgency=medium
+
+  * Skip TokuDB support even on amd64
+
+ -- Rémi Palancher <remi-externe.palancher@edf.fr>  Fri, 05 Jan 2018 09:56:25 +0100
+
 mariadb-10.1 (10.1.22-3sci8u1) scibian8; urgency=medium
 
   * Adapt control and copyright files for Scibian packaging
