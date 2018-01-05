@@ -33,12 +33,9 @@ else
     TESTSUITE_FAIL_CMD:=exit 1
 endif
 
-# Skip TokuDB if arch is not amd64 (also disable for kfreebsd-amd64 as it FTBFS)
-# Skipped on the x32 ABI too; untested, but unlikely to work given i386 is not
-# supported.
-ifneq ($(DEB_HOST_ARCH),amd64)
-    CMAKEFLAGS += -DWITHOUT_TOKUDB=true
-endif
+# Skip TokuDB as it makes build times huge (tests are incredibily long, more than
+# several hours on jenkins) and this DB engine is not used on Scibian.
+CMAKEFLAGS += -DWITHOUT_TOKUDB=true
 
 # Add support for verbose builds
 MAKEFLAGS += VERBOSE=1
